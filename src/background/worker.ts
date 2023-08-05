@@ -6,7 +6,6 @@ const taittsuHomeUrl = "https://taittsuu.com/home"
 const pageInfoQueue: Array<PageInfo> = []
 
 const messageListener = (message: unknown, sender: MessageSender, callback: (arg: unknown) => void) => {
-  console.log({ message, sender, callback })
   if (MessageUtil.isShift(message)) {
     shift(callback)
   }
@@ -17,17 +16,17 @@ const shift = (callback: (args: unknown) => void) => {
   callback(pi)
 }
 
-const clickListener = (tab: chrome.tabs.Tab) => {
-  if (tab.url && tab.title && tab.url !== taittsuHomeUrl) {
-    pageInfoQueue.push({
-      url: tab.url,
-      title: tab.title
-    })
-    chrome.tabs
-      .create({
+const clickListener = async (tab: chrome.tabs.Tab) => {
+  if (tab.url !== taittsuHomeUrl) {
+    if (tab.url && tab.title) {
+      pageInfoQueue.push({
+        url: tab.url,
+        title: tab.title
+      })
+      await chrome.tabs.create({
         url: taittsuHomeUrl
       })
-      .then()
+    }
   }
 }
 

@@ -1,6 +1,7 @@
-const waitForReady = (count: number, isReady: () => boolean, callback: () => void) => {
-  if (isReady()) {
-    callback()
+const waitForReady = <T>(count: number, isReady: () => T | null | undefined, callback: (target: T) => void) => {
+  const target = isReady()
+  if (target) {
+    callback(target)
   } else if (count > 0) {
     setTimeout(
       () => {
