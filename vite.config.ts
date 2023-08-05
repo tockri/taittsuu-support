@@ -4,13 +4,13 @@ import { defineConfig } from "vite"
 
 const manifest = defineManifest({
   manifest_version: 3,
-  name: "タイッツーサポート",
+  name: "どこでもタイーツ",
   version: "1.0.0",
   description: "任意のウェブサイトから簡単にタイーツできます。",
   background: {
     service_worker: "src/background/worker.ts"
   },
-  permissions: ["storage", "tabs", "activeTab", "scripting"],
+  permissions: ["tabs", "scripting"],
   icons: {
     "48": "icon48.png",
     "128": "icon128.png"
