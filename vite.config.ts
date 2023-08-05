@@ -19,11 +19,11 @@ const manifest = defineManifest({
     {
       matches: ["https://taittsuu.com/home"],
       js: ["src/content/taittsuu.ts"],
-      run_at: "document_idle"
+      run_at: "document_end"
     }
   ],
   action: {
-    default_title: "Click to show an alert"
+    default_title: "タイーツする"
   }
 })
 

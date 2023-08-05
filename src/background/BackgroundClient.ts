@@ -13,7 +13,7 @@ const sendMessage = <T, M extends Message = Message>(message: M): Promise<T> =>
     })
   })
 
-const shift = () => sendMessage<PageInfo>(MessageUtil.shift())
+const shift = () => sendMessage<PageInfo | undefined>(MessageUtil.shift())
 
 export const BackgroundClient = {
   shift
