@@ -16,22 +16,33 @@ const shift = (callback: (args: unknown) => void) => {
   callback(pi)
 }
 
-const clickListener = async (tab: chrome.tabs.Tab) => {
-  if (tab.url !== taittsuHomeUrl) {
-    if (tab.url && tab.title) {
-      pageInfoQueue.push({
-        url: tab.url,
-        title: tab.title
+const tabUpdatedListener = async (tabId: number, info: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => {
+  if (info.status === "complete") {
+    if (tab.url === taittsuHomeUrl) {
+      await chrome.action.setPopup({
+        tabId,
+        popup: "config.html"
       })
-      await chrome.tabs.create({
-        url: taittsuHomeUrl
-      })
+    } else {
+      if (!chrome.action.onClicked.hasListeners()) {
+        chrome.action.onClicked.addListener(async (tab) => {
+          if (tab.url && tab.title) {
+            pageInfoQueue.push({
+              url: tab.url,
+              title: tab.title
+            })
+            await chrome.tabs.create({
+              url: taittsuHomeUrl
+            })
+          }
+        })
+      }
     }
   }
 }
 
 const initWorker = () => {
   chrome.runtime.onMessage.addListener(messageListener)
-  chrome.action.onClicked.addListener(clickListener)
+  chrome.tabs.onUpdated.addListener(tabUpdatedListener)
 }
 initWorker()
