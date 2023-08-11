@@ -1,4 +1,4 @@
-import { Message, MessageUtil, PageInfo } from "./Message"
+import { ConfigValues, Message, MessageUtil, PageInfo } from "./Message"
 
 const sendMessage = <T, M extends Message = Message>(message: M): Promise<T> =>
   new Promise((resolve, reject) => {
@@ -15,6 +15,12 @@ const sendMessage = <T, M extends Message = Message>(message: M): Promise<T> =>
 
 const shift = () => sendMessage<PageInfo | undefined>(MessageUtil.shift())
 
+const getConfig = () => sendMessage<ConfigValues>(MessageUtil.getConfig())
+
+const setConfig = (values: Partial<ConfigValues>) => sendMessage<void>(MessageUtil.setConfig(values))
+
 export const BackgroundClient = {
-  shift
+  shift,
+  getConfig,
+  setConfig
 }

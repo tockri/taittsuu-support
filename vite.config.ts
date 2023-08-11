@@ -1,5 +1,6 @@
 import { crx, defineManifest } from "@crxjs/vite-plugin"
 import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
 
 const manifest = defineManifest({
   manifest_version: 3,
@@ -9,7 +10,7 @@ const manifest = defineManifest({
   background: {
     service_worker: "src/background/worker.ts"
   },
-  permissions: ["tabs", "scripting"],
+  permissions: ["tabs", "scripting", "storage"],
   icons: {
     "48": "icon48.png",
     "128": "icon128.png"
@@ -23,9 +24,10 @@ const manifest = defineManifest({
   ],
   action: {
     default_title: "タイーツする"
-  }
+  },
+  options_page: "src/config/config.html"
 })
 
 export default defineConfig({
-  plugins: [crx({ manifest })]
+  plugins: [react(), crx({ manifest })]
 })
