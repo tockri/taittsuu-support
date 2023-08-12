@@ -47,7 +47,7 @@ export const ConfigApp: React.FC = () => {
                 }}
               />
             }
-            label="ツイッターのシェア画面をタイーツ画面で置き換える"
+            label="Xのシェア画面をタイーツ画面で置き換える"
           />
         </Stack>
       </FormGroup>
