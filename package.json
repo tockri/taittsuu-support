@@ -8,14 +8,29 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.4",
+    "jotai": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-tooltip": "^5.20.0"
+  },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
     "@types/chrome": "^0.0.243",
     "@types/prettier": "^3",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
+    "@vitejs/plugin-react": "^4.0.4",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^22.1.0",
     "prettier": "^3.0.1",
     "prettier-plugin-organize-imports": "^3.2.3",
     "typescript": "^5.0.2",
@@ -23,7 +38,7 @@
     "vitest": "^0.34.1"
   },
   "volta": {
-    "node": "18.16.0"
+    "node": "20.3.1"
   },
   "prettier": {
     "semi": false,
@@ -38,18 +53,24 @@
       "browser": true
     },
     "plugins": [
+      "react",
+      "react-hooks",
       "@typescript-eslint"
     ],
-    "rules": {
-    },
+    "rules": {},
     "extends": [
       "eslint:recommended",
-      "plugin:@typescript-eslint/recommended"
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended"
     ],
     "ignorePatterns": [
       "node_modules"
     ],
     "settings": {
+      "react": {
+        "version": "detect"
+      }
     }
   }
 }
