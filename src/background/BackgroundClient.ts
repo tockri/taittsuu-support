@@ -13,14 +13,17 @@ const sendMessage = <T, M extends Message = Message>(message: M): Promise<T> =>
     })
   })
 
-const shift = () => sendMessage<PageInfo | undefined>(MessageUtil.shift())
+const getPageInfo = () => sendMessage<PageInfo | undefined>(MessageUtil.getPageInfo())
+
+const setPageInfo = (info: PageInfo) => sendMessage<void>(MessageUtil.setPageInfo(info))
 
 const getConfig = () => sendMessage<ConfigValues>(MessageUtil.getConfig())
 
 const setConfig = (values: Partial<ConfigValues>) => sendMessage<void>(MessageUtil.setConfig(values))
 
 export const BackgroundClient = {
-  shift,
+  getPageInfo,
+  setPageInfo,
   getConfig,
   setConfig
 }

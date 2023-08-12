@@ -6,19 +6,26 @@ const taittsuHomeUrl = "https://taittsuu.com/home"
 const pageInfoQueue: Array<PageInfo> = []
 
 const messageListener = (message: unknown, sender: MessageSender, callback: (arg: unknown) => void) => {
-  if (MessageUtil.isShift(message)) {
-    shift(callback)
+  if (MessageUtil.isGetPageInfo(message)) {
+    getPageInfo(callback)
+  } else if (MessageUtil.isSetPageInfo(message)) {
+    setPageInfo(message.info, callback)
   } else if (MessageUtil.isSetConfig(message)) {
-    setConfig(message.values, callback)
+    setConfig(message.values, callback).then()
   } else if (MessageUtil.isGetConfig(message)) {
-    getConfig(callback)
+    getConfig(callback).then()
   }
   return true
 }
 
-const shift = (callback: (args: unknown) => void) => {
+const getPageInfo = (callback: (args: unknown) => void) => {
   const pi = pageInfoQueue.shift()
   callback(pi)
+}
+
+const setPageInfo = (info: PageInfo, callback: (args: unknown) => void) => {
+  pageInfoQueue.push(info)
+  callback(null)
 }
 
 const getConfig = async (callback: (args: unknown) => void) => {
@@ -26,9 +33,10 @@ const getConfig = async (callback: (args: unknown) => void) => {
   callback(values || {})
 }
 
-const setConfig = async (values: ConfigValues, callback: (args: unknown) => void) => {
+const setConfig = async (values: Partial<ConfigValues>, callback: (args: unknown) => void) => {
   const { config: curr } = await chrome.storage.local.get("config")
-  await chrome.storage.local.set({ config: { ...curr, ...values } })
+  const config: ConfigValues = { ...curr, ...values }
+  await chrome.storage.local.set({ config: config })
   callback(null)
 }
 
