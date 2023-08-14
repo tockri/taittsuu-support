@@ -56,7 +56,7 @@ const setInputCounter = () => {
 }
 
 const showTaiitsuInput = (pageInfo: PageInfo) => {
-  const btn = document.querySelector(".container-right .btn-primary") as HTMLButtonElement
+  const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
   if (btn) {
     btn.click()
     Waiter.waitForReady(
