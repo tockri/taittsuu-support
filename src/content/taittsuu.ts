@@ -55,6 +55,15 @@ const setInputCounter = () => {
   }
 }
 
+const makeTextAreaValue = (pageInfo: PageInfo): string => {
+  const hatenaMatch = pageInfo.title.match(/ \/ “(.+)” \n(https:\/\/htn.to\/.+)/m)
+  if (hatenaMatch) {
+    return `${hatenaMatch[1]}\n\n${hatenaMatch[2]}`
+  } else {
+    return `\n${pageInfo.title}\n${pageInfo.url}`
+  }
+}
+
 const showTaiitsuInput = (pageInfo: PageInfo) => {
   const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
   if (btn) {
@@ -66,7 +75,7 @@ const showTaiitsuInput = (pageInfo: PageInfo) => {
           (e) => (e as HTMLElement).offsetParent !== null
         )[0] as HTMLTextAreaElement,
       (textArea) => {
-        textArea.value = `\n${pageInfo.title}\n${pageInfo.url}`
+        textArea.value = makeTextAreaValue(pageInfo)
         textArea.focus()
         textArea.setSelectionRange(0, 0)
         textArea.scrollTo({ top: 0 })
