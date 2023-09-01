@@ -1,6 +1,6 @@
 import { BackgroundClient } from "../background/BackgroundClient"
 import { Waiter } from "../util/Waiter"
-import { PageInfo } from "../background/Message"
+import { PostContent } from "../background/Message"
 
 const setWideInputStyle = () => {
   const styleId = "taittsuu-support-wideInput-style"
@@ -55,16 +55,7 @@ const setInputCounter = () => {
   }
 }
 
-const makeTextAreaValue = (pageInfo: PageInfo): string => {
-  const hatenaMatch = pageInfo.title.match(/ \/ “(.+)” \n(https:\/\/htn.to\/.+)/m)
-  if (hatenaMatch) {
-    return `${hatenaMatch[1]}\n\n${hatenaMatch[2]}`
-  } else {
-    return `\n${pageInfo.title}\n${pageInfo.url}`
-  }
-}
-
-const showTaiitsuInput = (pageInfo: PageInfo) => {
+const showTaiitsuInput = (content: PostContent) => {
   const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
   if (btn) {
     btn.click()
@@ -75,7 +66,7 @@ const showTaiitsuInput = (pageInfo: PageInfo) => {
           (e) => (e as HTMLElement).offsetParent !== null
         )[0] as HTMLTextAreaElement,
       (textArea) => {
-        textArea.value = makeTextAreaValue(pageInfo)
+        textArea.value = `${content.body}\n${content.url}`
         textArea.focus()
         textArea.setSelectionRange(0, 0)
         textArea.scrollTo({ top: 0 })
@@ -94,9 +85,9 @@ const initialize = async () => {
   if (config.showCharCount) {
     setInputCounter()
   }
-  const pageInfo = await BackgroundClient.getPageInfo()
-  if (pageInfo) {
-    showTaiitsuInput(pageInfo)
+  const content = await BackgroundClient.getPostContent()
+  if (content) {
+    showTaiitsuInput(content)
   }
 }
 

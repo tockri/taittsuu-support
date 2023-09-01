@@ -1,11 +1,11 @@
 import { crx, defineManifest } from "@crxjs/vite-plugin"
-import { defineConfig } from "vite"
+import { defineConfig } from "vitest/config"
 import react from "@vitejs/plugin-react"
 
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.0.3",
+  version: "1.1.0",
   description: "任意のウェブサイトから簡単にタイーツできます。",
   background: {
     service_worker: "src/background/worker.ts"
@@ -34,5 +34,8 @@ const manifest = defineManifest({
 })
 
 export default defineConfig({
-  plugins: [react(), crx({ manifest })]
+  plugins: [react(), crx({ manifest })],
+  test: {
+    globals: true
+  }
 })

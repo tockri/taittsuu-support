@@ -1,5 +1,5 @@
 import TabUpdatedEvent = chrome.tabs.TabUpdatedEvent
-import { PageInfoStore } from "./PageInfoStore"
+import { PostContentStore } from "./PostContentStore"
 import BrowserClickedEvent = chrome.action.BrowserClickedEvent
 
 type ClickedListener = Parameters<BrowserClickedEvent["addListener"]>[0]
@@ -9,9 +9,9 @@ const taittsuHomeUrl = "https://taittsuu.com/home"
 
 const extensionIconClicked: ClickedListener = async (tab) => {
   if (tab.url && tab.title) {
-    PageInfoStore.store.push({
+    PostContentStore.push({
       url: tab.url,
-      title: tab.title
+      body: "\n\n" + tab.title
     })
     await chrome.tabs.create({
       url: taittsuHomeUrl

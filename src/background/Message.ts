@@ -9,27 +9,27 @@ const isMessage =
   (o: unknown): o is T =>
     ObjectUtil.isRecord(o) && o["method"] === method
 
-export type PageInfo = {
+export type PostContent = {
   url: string
-  title: string
+  body: string
 }
 
-type GetPageInfo = {
-  method: "GetPageInfo"
+type GetPostContent = {
+  method: "GetPostContent"
 }
 
-const isGetPageInfo = isMessage<GetPageInfo>("GetPageInfo")
+const isGetPostContent = isMessage<GetPostContent>("GetPostContent")
 
-const getPageInfo = (): GetPageInfo => ({ method: "GetPageInfo" })
+const getPostContent = (): GetPostContent => ({ method: "GetPostContent" })
 
-type SetPageInfo = {
-  method: "SetPageInfo"
-  info: PageInfo
+type SetPostContent = {
+  method: "SetPostContent"
+  content: PostContent
 }
 
-const isSetPageInfo = isMessage<SetPageInfo>("SetPageInfo")
+const isSetPostContent = isMessage<SetPostContent>("SetPostContent")
 
-const setPageInfo = (info: PageInfo): SetPageInfo => ({ method: "SetPageInfo", info })
+const setPostContent = (content: PostContent): SetPostContent => ({ method: "SetPostContent", content })
 
 export type ConfigValues = {
   wideInput?: boolean
@@ -54,13 +54,13 @@ const isGetConfig = isMessage<GetConfig>("GetConfig")
 
 const getConfig = (): GetConfig => ({ method: "GetConfig" })
 
-export type Message = GetPageInfo | SetConfig | GetConfig | SetPageInfo
+export type Message = GetPostContent | SetConfig | GetConfig | SetPostContent
 
 export const MessageUtil = {
-  isGetPageInfo,
-  getPageInfo,
-  isSetPageInfo,
-  setPageInfo,
+  isGetPostContent,
+  getPostContent,
+  isSetPostContent,
+  setPostContent,
   isSetConfig,
   setConfig,
   isGetConfig,
