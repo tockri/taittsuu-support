@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .yarn
+.pnp.cjs
+.pnp.loader.mjs
 /*.zip
 
 # Editor directories and files

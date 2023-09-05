@@ -39,15 +39,28 @@ export const ConfigApp: React.FC = () => {
           <FormControlLabel
             control={
               <Checkbox
-                defaultChecked={values.overrideTwitter}
+                defaultChecked={values.loadTimelineAutomatically}
                 onChange={(e) => {
                   setValues({
-                    overrideTwitter: e.target.checked
+                    loadTimelineAutomatically: e.target.checked
                   })
                 }}
               />
             }
-            label="Xのシェア画面をタイーツ画面で置き換える"
+            label="タイムラインの続きを自動で読み込む"
+          />
+          <FormControlLabel
+              control={
+                <Checkbox
+                    defaultChecked={values.overrideTwitter}
+                    onChange={(e) => {
+                      setValues({
+                        overrideTwitter: e.target.checked
+                      })
+                    }}
+                />
+              }
+              label="Xのシェア画面をタイーツ画面で置き換える"
           />
         </Stack>
       </FormGroup>

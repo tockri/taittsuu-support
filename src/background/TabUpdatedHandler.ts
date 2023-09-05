@@ -6,6 +6,7 @@ type ClickedListener = Parameters<BrowserClickedEvent["addListener"]>[0]
 type TabUpdatedListener = Parameters<TabUpdatedEvent["addListener"]>[0]
 
 const taittsuHomeUrl = "https://taittsuu.com/home"
+const taittsuPublicUrl = "https://taittsuu.com/publictimeline"
 
 const extensionIconClicked: ClickedListener = async (tab) => {
   if (tab.url && tab.title) {
@@ -21,7 +22,7 @@ const extensionIconClicked: ClickedListener = async (tab) => {
 
 const handler: TabUpdatedListener = async (tabId, info, tab) => {
   if (info.status === "complete") {
-    if (tab.url === taittsuHomeUrl) {
+    if (tab.url === taittsuHomeUrl || tab.url === taittsuPublicUrl) {
       await chrome.action.setPopup({
         tabId,
         popup: "src/config/config.html"

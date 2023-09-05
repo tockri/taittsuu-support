@@ -77,6 +77,23 @@ const showTaiitsuInput = (content: PostContent) => {
   }
 }
 
+const setAutomaticTimelineLoader = () => {
+  const button = document.querySelector<HTMLButtonElement>(".container-left>div>button#loadButton")
+  if (button) {
+    let timer = 0
+    const observer = new IntersectionObserver((e) => {
+      if (e[0]?.isIntersecting) {
+        timer = setTimeout(() => {
+          button.click()
+        }, 500)
+      } else {
+        clearTimeout(timer)
+      }
+    })
+    observer.observe(button)
+  }
+}
+
 const initialize = async () => {
   const config = await BackgroundClient.getConfig()
   if (config.wideInput) {
@@ -84,6 +101,9 @@ const initialize = async () => {
   }
   if (config.showCharCount) {
     setInputCounter()
+  }
+  if (config.loadTimelineAutomatically) {
+    setAutomaticTimelineLoader()
   }
   const content = await BackgroundClient.getPostContent()
   if (content) {

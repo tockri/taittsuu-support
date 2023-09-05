@@ -34,6 +34,7 @@ const setPostContent = (content: PostContent): SetPostContent => ({ method: "Set
 export type ConfigValues = {
   wideInput?: boolean
   showCharCount?: boolean
+  loadTimelineAutomatically?: boolean
   overrideTwitter?: boolean
 }
 

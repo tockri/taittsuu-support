@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react"
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.1.0",
+  version: "1.2.0",
   description: "任意のウェブサイトから簡単にタイーツできます。",
   background: {
     service_worker: "src/background/worker.ts"
