@@ -83,11 +83,11 @@ const setAutomaticTimelineLoader = () => {
     let timer = 0
     const observer = new IntersectionObserver((e) => {
       if (e[0]?.isIntersecting) {
-        timer = setTimeout(() => {
+        timer = window.setTimeout(() => {
           button.click()
         }, 500)
       } else {
-        clearTimeout(timer)
+        window.clearTimeout(timer)
       }
     })
     observer.observe(button)

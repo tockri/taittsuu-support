@@ -5,12 +5,12 @@ import react from "@vitejs/plugin-react"
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.2.0",
+  version: "1.2.1",
   description: "任意のウェブサイトから簡単にタイーツできます。",
   background: {
     service_worker: "src/background/worker.ts"
   },
-  permissions: ["tabs", "scripting", "storage"],
+  permissions: ["tabs", "storage"],
   icons: {
     "48": "icon48.png",
     "128": "icon128.png"
