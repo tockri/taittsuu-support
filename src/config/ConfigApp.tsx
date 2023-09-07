@@ -50,17 +50,30 @@ export const ConfigApp: React.FC = () => {
             label="タイムラインの続きを自動で読み込む"
           />
           <FormControlLabel
-              control={
-                <Checkbox
-                    defaultChecked={values.overrideTwitter}
-                    onChange={(e) => {
-                      setValues({
-                        overrideTwitter: e.target.checked
-                      })
-                    }}
-                />
-              }
-              label="Xのシェア画面をタイーツ画面で置き換える"
+            control={
+              <Checkbox
+                defaultChecked={values.lightboxOnImage}
+                onChange={(e) => {
+                  setValues({
+                    lightboxOnImage: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="タイーツの画像を画面内ビューアで開く"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked={values.overrideTwitter}
+                onChange={(e) => {
+                  setValues({
+                    overrideTwitter: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="Xのシェア画面をタイーツ画面で置き換える"
           />
         </Stack>
       </FormGroup>
