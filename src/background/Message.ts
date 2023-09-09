@@ -37,6 +37,7 @@ export type ConfigValues = {
   loadTimelineAutomatically?: boolean
   lightboxOnImage?: boolean
   overrideTwitter?: boolean
+  linkOnNoticeUser?: boolean
 }
 
 type SetConfig = {
@@ -56,9 +57,19 @@ const isGetConfig = isMessage<GetConfig>("GetConfig")
 
 const getConfig = (): GetConfig => ({ method: "GetConfig" })
 
-export type Message = GetPostContent | SetConfig | GetConfig | SetPostContent
+export type ConfigChanged = {
+  method: "ConfigChanged"
+  values: ConfigValues
+}
+
+const isConfigChanged = isMessage<ConfigChanged>("ConfigChanged")
+
+const configChanged = (values: ConfigValues): ConfigChanged => ({ method: "ConfigChanged", values })
+
+export type Message = GetPostContent | SetConfig | GetConfig | SetPostContent | ConfigChanged
 
 export const MessageUtil = {
+  isMessage,
   isGetPostContent,
   getPostContent,
   isSetPostContent,
@@ -66,5 +77,7 @@ export const MessageUtil = {
   isSetConfig,
   setConfig,
   isGetConfig,
-  getConfig
+  getConfig,
+  isConfigChanged,
+  configChanged
 }

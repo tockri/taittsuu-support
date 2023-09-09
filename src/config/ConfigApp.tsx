@@ -65,6 +65,19 @@ export const ConfigApp: React.FC = () => {
           <FormControlLabel
             control={
               <Checkbox
+                defaultChecked={values.linkOnNoticeUser}
+                onChange={(e) => {
+                  setValues({
+                    linkOnNoticeUser: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="通知画面でアカウント名をリンクにする"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
                 defaultChecked={values.overrideTwitter}
                 onChange={(e) => {
                   setValues({

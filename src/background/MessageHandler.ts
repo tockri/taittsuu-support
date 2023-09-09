@@ -29,6 +29,14 @@ const setConfig = async (values: Partial<ConfigValues>, callback: (args: unknown
   const config: ConfigValues = { ...curr, ...values }
   await chrome.storage.local.set({ config: config })
   callback(null)
+  const tabs = await chrome.tabs.query({
+    url: "https://taittsuu.com/*"
+  })
+  tabs.forEach((tab) => {
+    if (tab.id) {
+      chrome.tabs.sendMessage(tab.id, MessageUtil.configChanged(config))
+    }
+  })
 }
 
 export const MessageHandler = {
