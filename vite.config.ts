@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react"
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.4.0",
+  version: "1.4.1",
   description: "任意のウェブサイトから簡単にタイーツできます。",
   background: {
     service_worker: "src/background/worker.ts"
@@ -19,6 +19,7 @@ const manifest = defineManifest({
     {
       matches: ["https://taittsuu.com/*"],
       js: ["src/content/taittsuu.ts"],
+      css: ["css/taittsuu.css"],
       run_at: "document_end"
     },
     {

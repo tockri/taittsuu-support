@@ -1,45 +1,127 @@
-const openLightBox = (e: MouseEvent) => {
-  e.preventDefault()
-  e.stopPropagation()
-  const a = e.currentTarget as HTMLAnchorElement
-  const membrane = document.createElement("DIV")
-  const ms = membrane.style
-  ms.display = "flex"
-  ms.flexDirection = "row"
-  ms.alignItems = "center"
-  ms.position = "fixed"
-  ms.top = "0"
-  ms.left = "0"
-  ms.right = "0"
-  ms.bottom = "0"
-  ms.backgroundColor = "rgba(0, 0, 0, 0.85)"
-  ms.zIndex = "10"
+class ImgViewer {
+  private readonly root: HTMLDivElement
+  private readonly leftHandle: HTMLDivElement
+  private readonly rightHandle: HTMLDivElement
+  private readonly img: HTMLImageElement
+  private imgUrls: string[] = []
+  private showingIdx = -1
+  private active = true
 
-  const img = document.createElement("IMG") as HTMLImageElement
-  img.src = a.href
-  const ist = img.style
-  ist.maxHeight = "80%"
-  ist.maxWidth = "80%"
-  ist.marginLeft = "auto"
-  ist.marginRight = "auto"
-  membrane.appendChild(img)
-  document.body.append(membrane)
-  membrane.onclick = () => {
-    membrane.remove()
+  constructor() {
+    const root = document.createElement("DIV") as HTMLDivElement
+    root.className = "taittsuu-support-lightbox-membrane"
+    root.style.display = "none"
+    root.addEventListener("click", () => {
+      this.hide()
+    })
+    document.body.append(root)
+    this.root = root
+
+    const left = document.createElement("DIV") as HTMLDivElement
+    left.className = "taittsuu-support-lightbox-handle"
+    left.innerText = "<"
+    left.addEventListener("click", (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      this.show(this.showingIdx - 1)
+    })
+    root.append(left)
+    this.leftHandle = left
+
+    const img = document.createElement("IMG") as HTMLImageElement
+    img.className = "taittsuu-support-lightbox-img"
+    root.append(img)
+    this.img = img
+
+    const right = document.createElement("DIV") as HTMLDivElement
+    right.className = "taittsuu-support-lightbox-handle"
+    right.innerText = ">"
+    right.addEventListener("click", (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      this.show(this.showingIdx + 1)
+    })
+    root.append(right)
+    this.rightHandle = right
+
+    document.body.addEventListener("keydown", (e) => {
+      if (this.showingIdx >= 0) {
+        if (e.key === "ArrowRight") {
+          if (this.showingIdx < this.imgUrls.length - 1) {
+            this.show(this.showingIdx + 1)
+          }
+        } else if (e.key === "ArrowLeft") {
+          if (this.showingIdx > 0) {
+            this.show(this.showingIdx - 1)
+          }
+        } else if (e.key === "Escape") {
+          this.hide()
+        }
+      }
+    })
+  }
+
+  show(idx: number) {
+    this.showingIdx = idx
+    if (idx === 0) {
+      this.leftHandle.style.display = "none"
+    } else {
+      this.leftHandle.style.removeProperty("display")
+    }
+    this.img.src = this.imgUrls[idx]
+    if (idx >= this.imgUrls.length - 1) {
+      this.rightHandle.style.display = "none"
+    } else {
+      this.rightHandle.style.removeProperty("display")
+    }
+    this.root.style.removeProperty("display")
+  }
+
+  hide() {
+    this.root.style.display = "none"
+    this.showingIdx = -1
+  }
+
+  setImgUrls(imgUrls: string[]) {
+    this.imgUrls = imgUrls
+  }
+
+  activate(active: boolean) {
+    this.active = active
+  }
+
+  isActive() {
+    return this.active
   }
 }
 
-const updateEvent = () => {
-  document.querySelectorAll<HTMLAnchorElement>("div.post-media:has(a)>a").forEach((a) => {
-    a.removeEventListener("click", openLightBox)
-    a.addEventListener("click", openLightBox)
+const viewer = new ImgViewer()
+
+const registerImagesToViewer = () => {
+  document.querySelectorAll<HTMLDivElement>("div.post-media:has(a)").forEach((div) => {
+    if (!div.classList.contains("taittsuu-support-image-viewer-root")) {
+      div.classList.add("taittsuu-support-image-viewer-root")
+      const anchors = Array.from(div.querySelectorAll<HTMLAnchorElement>("a:has(img)"))
+      const imgUrls = anchors.map((a) => a.href)
+      anchors.forEach((a, idx) => {
+        a.addEventListener("click", (e) => {
+          if (viewer.isActive()) {
+            e.preventDefault()
+            e.stopPropagation()
+            viewer.setImgUrls(imgUrls)
+            viewer.show(idx)
+          }
+        })
+      })
+    }
   })
 }
 
-const observer = new MutationObserver(updateEvent)
+const observer = new MutationObserver(registerImagesToViewer)
 
 const set = () => {
-  updateEvent()
+  viewer.activate(true)
+  registerImagesToViewer()
   document.querySelectorAll<HTMLElement>("div.container-left").forEach((div) => {
     observer.observe(div, {
       childList: true,
@@ -49,10 +131,7 @@ const set = () => {
 }
 
 const unset = () => {
-  document.querySelectorAll<HTMLAnchorElement>("div.post-media:has(a)>a").forEach((a) => {
-    a.removeEventListener("click", openLightBox)
-  })
-  observer.disconnect()
+  viewer.activate(false)
 }
 
 export const LightboxOnImage = {

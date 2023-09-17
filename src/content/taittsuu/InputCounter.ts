@@ -1,23 +1,6 @@
-const styleId = "taittsuu-support-input-counter-style"
 const counterPaneId = "taittsuu-support-input-counter"
 
 const set = () => {
-  if (!document.getElementById(styleId)) {
-    const st = document.createElement("STYLE")
-    st.id = styleId
-    st.innerHTML = `
-#${counterPaneId} {
-  width: 120px;
-  color: #666;
-  font-size: 0.8rem;
-  margin-left: auto;
-  margin-top: -12px;
-  margin-bottom: 12px;
-}
-    `
-    document.head.append(st)
-  }
-
   const textarea = document.getElementById("taiitsuInput") as HTMLTextAreaElement | null
   let counterPane = document.getElementById(counterPaneId)
   if (textarea) {
