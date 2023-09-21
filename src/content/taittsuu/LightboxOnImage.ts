@@ -1,3 +1,9 @@
+const $ = <E extends HTMLElement = HTMLElement>(tag: string, className: string): E => {
+  const elem = document.createElement(tag.toUpperCase()) as E
+  elem.className = className
+  return elem
+}
+
 class ImgViewer {
   private readonly root: HTMLDivElement
   private readonly leftHandle: HTMLDivElement
@@ -8,8 +14,7 @@ class ImgViewer {
   private active = true
 
   constructor() {
-    const root = document.createElement("DIV") as HTMLDivElement
-    root.className = "taittsuu-support-lightbox-membrane"
+    const root = $<HTMLDivElement>("div", "taittsuu-support-lightbox-membrane")
     root.style.display = "none"
     root.addEventListener("click", () => {
       this.hide()
@@ -17,31 +22,31 @@ class ImgViewer {
     document.body.append(root)
     this.root = root
 
-    const left = document.createElement("DIV") as HTMLDivElement
-    left.className = "taittsuu-support-lightbox-handle"
+    const area = $<HTMLDivElement>("div", "taittsuu-support-lightbox-area")
+    root.append(area)
+
+    const left = $<HTMLDivElement>("div", "taittsuu-support-lightbox-handle")
     left.innerText = "<"
     left.addEventListener("click", (e) => {
       e.preventDefault()
       e.stopPropagation()
       this.show(this.showingIdx - 1)
     })
-    root.append(left)
+    area.append(left)
     this.leftHandle = left
 
-    const img = document.createElement("IMG") as HTMLImageElement
-    img.className = "taittsuu-support-lightbox-img"
-    root.append(img)
+    const img = $<HTMLImageElement>("img", "taittsuu-support-lightbox-img")
+    area.append(img)
     this.img = img
 
-    const right = document.createElement("DIV") as HTMLDivElement
-    right.className = "taittsuu-support-lightbox-handle"
+    const right = $<HTMLDivElement>("div", "taittsuu-support-lightbox-handle")
     right.innerText = ">"
     right.addEventListener("click", (e) => {
       e.preventDefault()
       e.stopPropagation()
       this.show(this.showingIdx + 1)
     })
-    root.append(right)
+    area.append(right)
     this.rightHandle = right
 
     document.body.addEventListener("keydown", (e) => {

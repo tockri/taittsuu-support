@@ -12,9 +12,9 @@ const createPostContent = (searchString: string): PostContent | undefined => {
 
 const splitBody = (content: PostContent): PostContent => {
   if (content.body && !content.url) {
-    const m = content.body.match(/https?:\/\/\w[\w!?/+\-_~;.,*&@#$%()'[\]]+/)
+    const m = content.body.match(/https?:\/\/\w[\w!?/+\-_~;.,*&@#$%()'[\]]+/g)
     if (m) {
-      const url = m[0]
+      const url = m[m.length - 1]
       const body = content.body.replace(url, "")
       return { body, url }
     }

@@ -1,5 +1,23 @@
 const counterPaneId = "taittsuu-support-input-counter"
 
+const count = (text: string): number => {
+  let length = 0
+  for (let i = 0; i < text.length; i++) {
+    const c = text.charCodeAt(i)
+    if (
+      (c !== 0xa && 0 <= c && c < 0x81) ||
+      c === 0xf8f0 ||
+      (c >= 0xff61 && c < 0xffa0) ||
+      (c >= 0xf8f1 && c < 0xf8f4)
+    ) {
+      length += 0.5
+    } else {
+      length += 1
+    }
+  }
+  return length
+}
+
 const set = () => {
   const textarea = document.getElementById("taiitsuInput") as HTMLTextAreaElement | null
   let counterPane = document.getElementById(counterPaneId)
@@ -16,9 +34,7 @@ const set = () => {
         const textarea = e.target as HTMLTextAreaElement
         if (digitSpan) {
           const text = textarea.value.trim()
-          const m = text.match(/[a-zA-Z0-9!-/:-@¥[-`{-~]+/)
-          const len = text.length - (m ? m[0].length / 2 : 0)
-          digitSpan.innerText = `${len}`
+          digitSpan.innerText = `${count(text)}`
         }
       }
       textarea.autofocus = true
@@ -38,4 +54,8 @@ const unset = () => {
 export const InputCounter = {
   set,
   unset
+}
+
+export const InputCounter_For_TestOnly = {
+  count
 }
