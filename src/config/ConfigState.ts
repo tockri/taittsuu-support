@@ -1,6 +1,6 @@
 import { atom } from "jotai"
-import { BackgroundClient } from "../background/BackgroundClient"
-import { ConfigValues } from "../background/Message"
+import { BackgroundClient } from "../backgroundInterface/BackgroundClient"
+import { ConfigValues } from "../backgroundInterface/types"
 
 const mainAtom = atom(
   async () => {

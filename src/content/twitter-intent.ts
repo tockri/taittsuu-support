@@ -1,4 +1,4 @@
-import { BackgroundClient } from "../background/BackgroundClient"
+import { BackgroundClient } from "../backgroundInterface/BackgroundClient"
 import { TwitterIntentSupport } from "./TwitterIntentSupport"
 
 const start = async () => {
@@ -7,7 +7,7 @@ const start = async () => {
     const content = TwitterIntentSupport.createPostContent(location.search)
     if (content && confirm("「どこでもタイーツ」からのメッセージ：\nXのかわりにタイッツーでシェアしますか？")) {
       await BackgroundClient.setPostContent(content)
-      location.href = "https://taittsuu.com/home"
+      location.href = `https://taittsuu.com/${config.inputPagePath || "home"}`
     }
   }
 }

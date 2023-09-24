@@ -38,6 +38,7 @@ export type ConfigValues = {
   lightboxOnImage?: boolean
   overrideTwitter?: boolean
   linkOnNoticeUser?: boolean
+  inputPagePath?: "home" | "publictimeline"
 }
 
 type SetConfig = {

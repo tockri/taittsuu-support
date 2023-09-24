@@ -1,4 +1,4 @@
-import { ConfigChanged, ConfigValues, Message, MessageUtil, PostContent } from "./Message"
+import { ConfigChanged, ConfigValues, Message, MessageUtil, PostContent } from "./types"
 import ExtensionMessageEvent = chrome.runtime.ExtensionMessageEvent
 
 const sendMessage = <T, M extends Message = Message>(message: M): Promise<T> =>
@@ -16,7 +16,7 @@ const sendMessage = <T, M extends Message = Message>(message: M): Promise<T> =>
 
 const listenMessage = <M extends Message>(method: M["method"], callback: (message: M) => void) => {
   const listener: Parameters<ExtensionMessageEvent["addListener"]>[0] = (m) => {
-    if (MessageUtil.isMessage<M>(m)) {
+    if (MessageUtil.isMessage<M>(method)(m)) {
       callback(m)
     }
     return true

@@ -1,6 +1,6 @@
-import { BackgroundClient } from "../background/BackgroundClient"
+import { BackgroundClient } from "../backgroundInterface/BackgroundClient"
 import { Waiter } from "../util/Waiter"
-import { PostContent } from "../background/Message"
+import { PostContent } from "../backgroundInterface/types"
 import { WideInputStyle } from "./taittsuu/WideInput"
 import { LightboxOnImage } from "./taittsuu/LightboxOnImage"
 import { InputCounter } from "./taittsuu/InputCounter"

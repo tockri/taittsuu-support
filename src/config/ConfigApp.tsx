@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Checkbox, FormControlLabel, FormGroup, Stack, SxProps } from "@mui/material"
+import { Box, Checkbox, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Stack, SxProps } from "@mui/material"
 import { useAtom } from "jotai"
 import { ConfigState } from "./ConfigState"
 
@@ -88,6 +88,21 @@ export const ConfigApp: React.FC = () => {
             }
             label="Xのシェア画面をタイーツ画面で置き換える"
           />
+
+          <RadioGroup
+            defaultValue={values.inputPagePath || "home"}
+            onChange={(e) => {
+              setValues({
+                inputPagePath: e.target.value === "home" ? "home" : "publictimeline"
+              })
+            }}
+          >
+            <FormLabel sx={{ mt: 2 }}>タイーツする時に開く画面</FormLabel>
+            <Stack direction="row" alignItems="center">
+              <FormControlLabel value="home" control={<Radio />} label="ホーム" />
+              <FormControlLabel value="publictimeline" control={<Radio />} label="パブリックタイムライン" />
+            </Stack>
+          </RadioGroup>
         </Stack>
       </FormGroup>
     </Box>

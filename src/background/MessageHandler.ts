@@ -1,7 +1,8 @@
 import ExtensionMessageEvent = chrome.runtime.ExtensionMessageEvent
 
-import { ConfigValues, MessageUtil } from "./Message"
+import { MessageUtil } from "../backgroundInterface/types"
 import { PostContentStore } from "./PostContentStore"
+import { Config } from "./Config"
 
 type MessageListener = Parameters<ExtensionMessageEvent["addListener"]>[0]
 
@@ -12,31 +13,11 @@ const handler: MessageListener = (message, sender, callback) => {
     PostContentStore.push(message.content)
     callback(null)
   } else if (MessageUtil.isSetConfig(message)) {
-    setConfig(message.values, callback).then()
+    Config.set(message.values, callback).then()
   } else if (MessageUtil.isGetConfig(message)) {
-    getConfig(callback).then()
+    Config.get().then((v) => callback(v))
   }
   return true
-}
-
-const getConfig = async (callback: (args: unknown) => void) => {
-  const { config: values } = await chrome.storage.local.get("config")
-  callback(values || {})
-}
-
-const setConfig = async (values: Partial<ConfigValues>, callback: (args: unknown) => void) => {
-  const { config: curr } = await chrome.storage.local.get("config")
-  const config: ConfigValues = { ...curr, ...values }
-  await chrome.storage.local.set({ config: config })
-  callback(null)
-  const tabs = await chrome.tabs.query({
-    url: "https://taittsuu.com/*"
-  })
-  tabs.forEach((tab) => {
-    if (tab.id) {
-      chrome.tabs.sendMessage(tab.id, MessageUtil.configChanged(config))
-    }
-  })
 }
 
 export const MessageHandler = {

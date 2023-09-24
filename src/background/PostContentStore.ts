@@ -1,4 +1,4 @@
-import { PostContent } from "./Message"
+import { PostContent } from "../backgroundInterface/types"
 
 const store: Array<PostContent> = []
 

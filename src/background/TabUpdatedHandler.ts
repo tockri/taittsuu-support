@@ -1,12 +1,12 @@
 import TabUpdatedEvent = chrome.tabs.TabUpdatedEvent
-import { PostContentStore } from "./PostContentStore"
 import BrowserClickedEvent = chrome.action.BrowserClickedEvent
+import { PostContentStore } from "./PostContentStore"
+import { Config } from "./Config"
 
 type ClickedListener = Parameters<BrowserClickedEvent["addListener"]>[0]
 type TabUpdatedListener = Parameters<TabUpdatedEvent["addListener"]>[0]
 
-const taittsuHomeUrl = "https://taittsuu.com/home"
-const taittsuPublicUrl = "https://taittsuu.com/publictimeline"
+const taittsuRoot = "https://taittsuu.com/"
 
 const extensionIconClicked: ClickedListener = async (tab) => {
   if (tab.url && tab.title) {
@@ -14,19 +14,24 @@ const extensionIconClicked: ClickedListener = async (tab) => {
       url: tab.url,
       body: "\n\n" + tab.title
     })
+    const config = await Config.get()
+    const path = config.inputPagePath || "home"
     await chrome.tabs.create({
-      url: taittsuHomeUrl
+      url: `${taittsuRoot}${path}`
     })
   }
 }
 
 const handler: TabUpdatedListener = async (tabId, info, tab) => {
-  if (info.status === "complete") {
-    if (tab.url === taittsuHomeUrl || tab.url === taittsuPublicUrl) {
-      await chrome.action.setPopup({
-        tabId,
-        popup: "src/config/config.html"
-      })
+  if (info.status) {
+    if (tab.url && tab.url.startsWith(taittsuRoot) && !tab.url.startsWith(`${taittsuRoot}users`)) {
+      const popup = await chrome.action.getPopup({ tabId: tab.id })
+      if (!popup) {
+        await chrome.action.setPopup({
+          tabId,
+          popup: "src/config/config.html"
+        })
+      }
     } else {
       if (!chrome.action.onClicked.hasListeners()) {
         chrome.action.onClicked.addListener(extensionIconClicked)

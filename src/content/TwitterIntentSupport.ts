@@ -1,4 +1,4 @@
-import { PostContent } from "../background/Message"
+import { PostContent } from "../backgroundInterface/types"
 import { FpUtil } from "../util/FpUtil"
 
 const createPostContent = (searchString: string): PostContent | undefined => {
