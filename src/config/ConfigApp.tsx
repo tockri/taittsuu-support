@@ -39,6 +39,19 @@ export const ConfigApp: React.FC = () => {
           <FormControlLabel
             control={
               <Checkbox
+                defaultChecked={values.modifyHeader}
+                onChange={(e) => {
+                  setValues({
+                    modifyHeader: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="常にヘッダを表示する"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
                 defaultChecked={values.loadTimelineAutomatically}
                 onChange={(e) => {
                   setValues({

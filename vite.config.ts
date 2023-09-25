@@ -5,8 +5,8 @@ import react from "@vitejs/plugin-react-swc"
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.5.0",
-  description: "任意のウェブサイトから簡単にタイーツできます。",
+  version: "1.6.0",
+  description: "任意のウェブサイトから簡単にタイーツでき、タイッツーのUIのかゆいところに手が届くカスタマイズを加えます。",
   background: {
     service_worker: "src/background/worker.ts"
   },

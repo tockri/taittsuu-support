@@ -52,3 +52,17 @@
   width: 560px;
   min-height: 240px;
 }
+
+/* ModifyHeader */
+@media screen and (min-width: 991px) {
+  .taittsuu-support-modify-header .taittsuu-support-header-h3,
+  .taittsuu-support-modify-header .taittsuu-support-header-links {
+    position: sticky;
+    top: 10px;
+    z-index: 101;
+  }
+
+  body.taittsuu-support-modify-header div.post-header-wrap {
+    z-index: 100;
+  }
+}

@@ -39,6 +39,7 @@ export type ConfigValues = {
   overrideTwitter?: boolean
   linkOnNoticeUser?: boolean
   inputPagePath?: "home" | "publictimeline"
+  modifyHeader?: boolean
 }
 
 type SetConfig = {

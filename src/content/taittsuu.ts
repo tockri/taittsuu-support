@@ -6,6 +6,7 @@ import { LightboxOnImage } from "./taittsuu/LightboxOnImage"
 import { InputCounter } from "./taittsuu/InputCounter"
 import { AutomaticTimelineLoader } from "./taittsuu/AutomaticTimelineLoader"
 import { LinkOnNoticeUser } from "./taittsuu/LinkOnNoticeUser"
+import { HeaderModifier } from "./taittsuu/HeaderModifier"
 
 const showTaiitsuInput = (content: PostContent) => {
   const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
@@ -30,6 +31,7 @@ const showTaiitsuInput = (content: PostContent) => {
 }
 
 const initialize = async () => {
+  HeaderModifier.init()
   await BackgroundClient.listenConfigChanged((config) => {
     if (config.wideInput) {
       WideInputStyle.set()
@@ -55,6 +57,11 @@ const initialize = async () => {
       LinkOnNoticeUser.set()
     } else {
       LinkOnNoticeUser.unset()
+    }
+    if (config.modifyHeader) {
+      HeaderModifier.set()
+    } else {
+      HeaderModifier.unset()
     }
   })
   const content = await BackgroundClient.getPostContent()
