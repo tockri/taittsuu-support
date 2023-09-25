@@ -4,10 +4,11 @@ import { createRoot } from "react-dom/client"
 import { ConfigApp } from "./ConfigApp"
 import React from "react"
 
+let initialized = false
 const start = () => {
-  if (!document.querySelector(".config-root")) {
-    const rootElem = JsxUtil.jsxToElement(<div className="config-root" />)
-    document.body.append(rootElem)
+  if (!initialized) {
+    initialized = true
+    const rootElem = document.getElementById("main-root")
     const reactRoot = createRoot(rootElem)
     reactRoot.render(
       <Provider>

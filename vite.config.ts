@@ -6,7 +6,8 @@ const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
   version: "1.6.0",
-  description: "任意のウェブサイトから簡単にタイーツでき、タイッツーのUIのかゆいところに手が届くカスタマイズを加えます。",
+  description:
+    "任意のウェブサイトから簡単にタイーツでき、タイッツーのUIのかゆいところに手が届くカスタマイズを加えます。",
   background: {
     service_worker: "src/background/worker.ts"
   },
@@ -31,7 +32,7 @@ const manifest = defineManifest({
   action: {
     default_title: "タイーツする"
   },
-  options_page: "src/config/config.html"
+  options_page: "src/options/options.html"
 })
 
 export default defineConfig({

@@ -1,5 +1,5 @@
 import { BackgroundClient } from "../backgroundInterface/BackgroundClient"
-import { TwitterIntentSupport } from "./TwitterIntentSupport"
+import { TwitterIntentSupport } from "./twitter/TwitterIntentSupport"
 
 const start = async () => {
   const config = await BackgroundClient.getConfig()

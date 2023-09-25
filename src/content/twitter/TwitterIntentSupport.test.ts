@@ -1,5 +1,5 @@
 import { TwitterIntentSupport } from "./TwitterIntentSupport"
-import { PostContent } from "../backgroundInterface/types"
+import { PostContent } from "../../backgroundInterface/types"
 
 describe("TwitterIntent", () => {
   const t = TwitterIntentSupport

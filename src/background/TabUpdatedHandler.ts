@@ -29,7 +29,7 @@ const handler: TabUpdatedListener = async (tabId, info, tab) => {
       if (!popup) {
         await chrome.action.setPopup({
           tabId,
-          popup: "src/config/config.html"
+          popup: "src/options/options.html"
         })
       }
     } else {

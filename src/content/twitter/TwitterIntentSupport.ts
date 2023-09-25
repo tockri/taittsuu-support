@@ -1,5 +1,5 @@
-import { PostContent } from "../backgroundInterface/types"
-import { FpUtil } from "../util/FpUtil"
+import { PostContent } from "../../backgroundInterface/types"
+import { FpUtil } from "../../util/FpUtil"
 
 const createPostContent = (searchString: string): PostContent | undefined => {
   const search = new URLSearchParams(searchString)
