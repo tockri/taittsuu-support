@@ -9,7 +9,34 @@ export const ConfigApp: React.FC = () => {
     <Box sx={RootStyle}>
       <FormGroup>
         <Stack direction="column" gap={1}>
-          <h1>どこでもタイーツ設定</h1>
+          <h1>どこでもタイーツのカスタマイズ</h1>
+          <h2>タイーツ入力ボックス</h2>
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked={values.focusOnTaiitsuInput}
+                onChange={(e) => {
+                  setValues({
+                    focusOnTaiitsuInput: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="表示時にフォーカス"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked={values.submitByKeyboard}
+                onChange={(e) => {
+                  setValues({
+                    submitByKeyboard: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="Ctrl+Enter（⌘+Enter）で送信する"
+          />
           <FormControlLabel
             control={
               <Checkbox
@@ -21,7 +48,7 @@ export const ConfigApp: React.FC = () => {
                 }}
               />
             }
-            label="タイーツ入力ボックスを広げる"
+            label="入力ボックスの幅を広げる"
           />
           <FormControlLabel
             control={
@@ -34,8 +61,9 @@ export const ConfigApp: React.FC = () => {
                 }}
               />
             }
-            label="タイーツ入力ボックスに文字数を表示する"
+            label="入力ボックスに文字数を表示する"
           />
+          <h2>タイムライン</h2>
           <FormControlLabel
             control={
               <Checkbox
@@ -78,6 +106,33 @@ export const ConfigApp: React.FC = () => {
           <FormControlLabel
             control={
               <Checkbox
+                defaultChecked={values.disablePostLink}
+                onChange={(e) => {
+                  setValues({
+                    disablePostLink: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="文字をマウスでなぞって選択できるようにする"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked={values.hideFavRet}
+                onChange={(e) => {
+                  setValues({
+                    hideFavRet: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="いいね、RTを非表示にする"
+          />
+          <h2>通知画面</h2>
+          <FormControlLabel
+            control={
+              <Checkbox
                 defaultChecked={values.linkOnNoticeUser}
                 onChange={(e) => {
                   setValues({
@@ -88,6 +143,7 @@ export const ConfigApp: React.FC = () => {
             }
             label="通知画面でアカウント名をリンクにする"
           />
+          <h2>どこでもタイーツ機能</h2>
           <FormControlLabel
             control={
               <Checkbox
@@ -132,5 +188,12 @@ const RootStyle: SxProps = {
     m: 0,
     my: 1,
     p: 0
+  },
+  " h2": {
+    fontSize: "1.1rem",
+    m: 0,
+    my: 1,
+    p: 0.5,
+    borderBottom: "1px solid #ccc"
   }
 }

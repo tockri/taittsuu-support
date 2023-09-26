@@ -1,3 +1,5 @@
+import { TaittsuuContentObserver } from "./TaittsuuContentObserver"
+
 const $ = <E extends HTMLElement = HTMLElement>(tag: string, className: string): E => {
   const elem = document.createElement(tag.toUpperCase()) as E
   elem.className = className
@@ -102,40 +104,31 @@ class ImgViewer {
 
 const viewer = new ImgViewer()
 
-const registerImagesToViewer = () => {
-  document.querySelectorAll<HTMLDivElement>("div.post-media:has(a)").forEach((div) => {
-    if (!div.classList.contains("taittsuu-support-image-viewer-root")) {
-      div.classList.add("taittsuu-support-image-viewer-root")
-      const anchors = Array.from(div.querySelectorAll<HTMLAnchorElement>("a:has(img)"))
-      const imgUrls = anchors.map((a) => a.href)
-      anchors.forEach((a, idx) => {
-        a.addEventListener("click", (e) => {
-          if (viewer.isActive()) {
-            e.preventDefault()
-            e.stopPropagation()
-            viewer.setImgUrls(imgUrls)
-            viewer.show(idx)
-          }
+const set = () => {
+  TaittsuuContentObserver.start("LightboxOnImage", (pane) => {
+    pane
+      .querySelectorAll<HTMLDivElement>("div.post-media:has(a):not(.taittsuu-support-image-viewer-root)")
+      .forEach((div) => {
+        div.classList.add("taittsuu-support-image-viewer-root")
+        const anchors = Array.from(div.querySelectorAll<HTMLAnchorElement>("a:has(img)"))
+        const imgUrls = anchors.map((a) => a.href)
+        anchors.forEach((a, idx) => {
+          a.addEventListener("click", (e) => {
+            if (viewer.isActive()) {
+              e.preventDefault()
+              e.stopPropagation()
+              viewer.setImgUrls(imgUrls)
+              viewer.show(idx)
+            }
+          })
         })
       })
-    }
   })
-}
-
-const observer = new MutationObserver(registerImagesToViewer)
-
-const set = () => {
   viewer.activate(true)
-  registerImagesToViewer()
-  document.querySelectorAll<HTMLElement>("div.container-left").forEach((div) => {
-    observer.observe(div, {
-      childList: true,
-      subtree: true
-    })
-  })
 }
 
 const unset = () => {
+  TaittsuuContentObserver.stop("LightboxOnImage")
   viewer.activate(false)
 }
 

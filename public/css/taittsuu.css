@@ -20,7 +20,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.85);
-  z-index: 10;
+  z-index: 50000;
   outline: none;
 }
 .taittsuu-support-lightbox-area {
@@ -59,10 +59,24 @@
   .taittsuu-support-modify-header .taittsuu-support-header-links {
     position: sticky;
     top: 10px;
-    z-index: 101;
+    z-index: 200;
   }
 
   body.taittsuu-support-modify-header div.post-header-wrap {
     z-index: 100;
   }
+}
+
+/* DisablePostLink */
+.taittsuu-support-disable-post-link .post-content-wrapper > a.post-link {
+  pointer-events: none;
+}
+.taittsuu-support-disable-post-link .post-content-wrapper > a.post-link a {
+  pointer-events: auto;
+}
+
+/* HideFavRet */
+.taittsuu-support-hide-fav-ret .post-like-button,
+.taittsuu-support-hide-fav-ret .post-rt-button {
+  display: none;
 }

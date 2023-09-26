@@ -1,4 +1,3 @@
-import { JsxUtil } from "../util/JsxUtil"
 import { Provider } from "jotai"
 import { createRoot } from "react-dom/client"
 import { ConfigApp } from "./ConfigApp"
@@ -9,14 +8,18 @@ const start = () => {
   if (!initialized) {
     initialized = true
     const rootElem = document.getElementById("main-root")
-    const reactRoot = createRoot(rootElem)
-    reactRoot.render(
-      <Provider>
-        <React.Suspense fallback="">
-          <ConfigApp />
-        </React.Suspense>
-      </Provider>
-    )
+    if (rootElem) {
+      const reactRoot = createRoot(rootElem)
+      reactRoot.render(
+        <Provider>
+          <React.Suspense fallback="">
+            <ConfigApp />
+          </React.Suspense>
+        </Provider>
+      )
+    } else {
+      console.warn("main-root not found on options.html")
+    }
   }
 }
 

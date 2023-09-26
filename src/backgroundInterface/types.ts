@@ -40,6 +40,10 @@ export type ConfigValues = {
   linkOnNoticeUser?: boolean
   inputPagePath?: "home" | "publictimeline"
   modifyHeader?: boolean
+  disablePostLink?: boolean
+  hideFavRet?: boolean
+  focusOnTaiitsuInput?: boolean
+  submitByKeyboard?: boolean
 }
 
 type SetConfig = {

@@ -7,6 +7,10 @@ import { InputCounter } from "./taittsuu/InputCounter"
 import { AutomaticTimelineLoader } from "./taittsuu/AutomaticTimelineLoader"
 import { LinkOnNoticeUser } from "./taittsuu/LinkOnNoticeUser"
 import { HeaderModifier } from "./taittsuu/HeaderModifier"
+import { DisablePostLink } from "./taittsuu/DisablePostLink"
+import { HideFavRet } from "./taittsuu/HideFavRet"
+import { FocusOnTaiitsuInput } from "./taittsuu/FocusOnTaiitsuInput"
+import { SubmitByKeyboard } from "./taittsuu/SubmitByKeyboard"
 
 const showTaiitsuInput = (content: PostContent) => {
   const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
@@ -62,6 +66,26 @@ const initialize = async () => {
       HeaderModifier.set()
     } else {
       HeaderModifier.unset()
+    }
+    if (config.disablePostLink) {
+      DisablePostLink.set()
+    } else {
+      DisablePostLink.unset()
+    }
+    if (config.hideFavRet) {
+      HideFavRet.set()
+    } else {
+      HideFavRet.unset()
+    }
+    if (config.focusOnTaiitsuInput) {
+      FocusOnTaiitsuInput.set()
+    } else {
+      FocusOnTaiitsuInput.unset()
+    }
+    if (config.submitByKeyboard) {
+      SubmitByKeyboard.set()
+    } else {
+      SubmitByKeyboard.unset()
     }
   })
   const content = await BackgroundClient.getPostContent()
