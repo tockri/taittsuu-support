@@ -119,6 +119,19 @@ export const ConfigApp: React.FC = () => {
           <FormControlLabel
             control={
               <Checkbox
+                defaultChecked={values.glimpseSensitive}
+                onChange={(e) => {
+                  setValues({
+                    glimpseSensitive: e.target.checked
+                  })
+                }}
+              />
+            }
+            label="センシティブなタイーツの先頭を少しだけ見る"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
                 defaultChecked={values.hideFavRet}
                 onChange={(e) => {
                   setValues({

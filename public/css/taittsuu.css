@@ -80,3 +80,24 @@
 .taittsuu-support-hide-fav-ret .post-rt-button {
   display: none;
 }
+
+/* GlimpseSensitive */
+.taittsuu-support-glimpse-sensitive .post-content-wrapper>.sensitive-cover {
+  top: 5em;
+}
+.taittsuu-support-glimpse-sensitive .post-content-wrapper>.sensitive-cover:after {
+  position: absolute;
+  content: "";
+  top: -5em;
+  right: 0;
+  left: 10em;
+  height: 5.1em;
+  z-index:1;
+  background-color: #f8f8f8;
+}
+@media (prefers-color-scheme: dark) {
+  .taittsuu-support-glimpse-sensitive .post-content-wrapper>.sensitive-cover:after {
+    background-color: #141921;
+  }
+}
+
