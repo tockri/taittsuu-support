@@ -5,8 +5,14 @@ const createPostContent = (searchString: string): PostContent | undefined => {
   const search = new URLSearchParams(searchString)
   const body = search.get("text") || ""
   const url = search.get("url") || ""
+  const piped = FpUtil.pipe(splitBody, modifyHatenaText)
   if (body) {
-    return FpUtil.pipe(splitBody, modifyHatenaText)({ body, url })
+    return piped({ body, url })
+  } else if (url) {
+    return piped({
+      body: url,
+      url: ""
+    })
   }
 }
 

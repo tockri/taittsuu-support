@@ -1,12 +1,12 @@
 {
   "name": "taittsuu-support",
   "private": true,
-  "version": "1.7.0",
+  "version": "1.7.1",
   "scripts": {
     "dev": "rm -rf dist && vite",
     "build": "tsc && rm -rf dist && NODE_ENV=production vite build && cd dist && zip ../taittsuu-support.zip -r *",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "test": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -70,5 +70,8 @@
         "version": "detect"
       }
     }
+  },
+  "volta": {
+    "node": "18.18.0"
   }
 }

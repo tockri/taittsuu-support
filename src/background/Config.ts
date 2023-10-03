@@ -2,7 +2,7 @@ import { ConfigValues, MessageUtil } from "../backgroundInterface/types"
 
 const get = async (): Promise<ConfigValues> => {
   const { config: values } = await chrome.storage.local.get("config")
-  return values
+  return values || {}
 }
 
 const set = async (values: Partial<ConfigValues>, callback: (args: unknown) => void) => {

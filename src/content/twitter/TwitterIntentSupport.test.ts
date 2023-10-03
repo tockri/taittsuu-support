@@ -28,4 +28,13 @@ describe("TwitterIntent", () => {
       url: "https://htn.to/2QiLdbxFFj"
     })
   })
+
+  test("complex2", () => {
+    const s = `?url=%E3%81%BE%E3%82%93%E3%81%BE%E3%82%8B%E3%80%81%E4%B8%AD%E7%A7%8B%E3%81%AE%E5%90%8D%E6%9C%88%E3%80%80%E7%9C%8C%E5%86%85%E3%80%81%E6%98%8E%E3%82%8B%E3%81%8F%E5%A4%9C%E7%A9%BA%E7%85%A7%E3%82%89%E3%81%99%20https://www.yamagata-np.jp/news/202309/30/kj_2023093000689.php`
+    const cont = t.createPostContent(s)
+    expect(cont).toStrictEqual<PostContent>({
+      body: "まんまる、中秋の名月　県内、明るく夜空照らす ",
+      url: "https://www.yamagata-np.jp/news/202309/30/kj_2023093000689.php"
+    })
+  })
 })

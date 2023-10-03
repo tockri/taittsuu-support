@@ -8,14 +8,14 @@ const listener = (e: KeyboardEvent) => {
 const set = () => {
   const textarea = document.getElementById("taiitsuInput")
   if (textarea) {
-    textarea.addEventListener("keyup", listener)
+    textarea.addEventListener("keydown", listener)
   }
 }
 
 const unset = () => {
   const textarea = document.getElementById("taiitsuInput")
   if (textarea) {
-    textarea.removeEventListener("keyup", listener)
+    textarea.removeEventListener("keydown", listener)
   }
 }
 
