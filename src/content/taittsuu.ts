@@ -11,7 +11,6 @@ import { DisablePostLink } from "./taittsuu/DisablePostLink"
 import { HideFavRet } from "./taittsuu/HideFavRet"
 import { FocusOnTaiitsuInput } from "./taittsuu/FocusOnTaiitsuInput"
 import { SubmitByKeyboard } from "./taittsuu/SubmitByKeyboard"
-import { GlimpseSensitive } from "./taittsuu/GlimpseSensitive"
 
 const showTaiitsuInput = (content: PostContent) => {
   const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
@@ -87,11 +86,6 @@ const initialize = async () => {
       SubmitByKeyboard.set()
     } else {
       SubmitByKeyboard.unset()
-    }
-    if (config.glimpseSensitive) {
-      GlimpseSensitive.set()
-    } else {
-      GlimpseSensitive.unset()
     }
   })
   const content = await BackgroundClient.getPostContent()

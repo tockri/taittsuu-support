@@ -44,7 +44,6 @@ export type ConfigValues = {
   hideFavRet?: boolean
   focusOnTaiitsuInput?: boolean
   submitByKeyboard?: boolean
-  glimpseSensitive?: boolean
 }
 
 type SetConfig = {
