@@ -35,7 +35,6 @@ export type ConfigValues = {
   wideInput?: boolean
   showCharCount?: boolean
   loadTimelineAutomatically?: boolean
-  lightboxOnImage?: boolean
   overrideTwitter?: boolean
   linkOnNoticeUser?: boolean
   inputPagePath?: "home" | "publictimeline"

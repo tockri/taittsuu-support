@@ -2,7 +2,6 @@ import { BackgroundClient } from "../backgroundInterface/BackgroundClient"
 import { Waiter } from "../util/Waiter"
 import { PostContent } from "../backgroundInterface/types"
 import { WideInputStyle } from "./taittsuu/WideInput"
-import { LightboxOnImage } from "./taittsuu/LightboxOnImage"
 import { InputCounter } from "./taittsuu/InputCounter"
 import { AutomaticTimelineLoader } from "./taittsuu/AutomaticTimelineLoader"
 import { LinkOnNoticeUser } from "./taittsuu/LinkOnNoticeUser"
@@ -52,11 +51,6 @@ const initialize = async () => {
       AutomaticTimelineLoader.set()
     } else {
       AutomaticTimelineLoader.unset()
-    }
-    if (config.lightboxOnImage) {
-      LightboxOnImage.set()
-    } else {
-      LightboxOnImage.unset()
     }
     if (config.linkOnNoticeUser) {
       LinkOnNoticeUser.set()

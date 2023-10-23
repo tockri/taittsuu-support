@@ -8,45 +8,6 @@
   margin-bottom: 12px;
 }
 
-/* LightboxOnImage */
-.taittsuu-support-lightbox-membrane {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 50000;
-  outline: none;
-}
-.taittsuu-support-lightbox-area {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-}
-.taittsuu-support-lightbox-img {
-  max-height: 80vh;
-  max-width: 80vw;
-}
-.taittsuu-support-lightbox-handle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  cursor: pointer;
-  font-size: 160%;
-  color: #999999;
-}
-.taittsuu-support-lightbox-handle:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  font-size: 220%;
-}
-
 /* WideInput */
 .taittsuu-support-wide-input #taiitsuDialogInner textarea#taiitsuInput {
   width: 560px;
@@ -81,12 +42,12 @@
   display: none;
 }
 
-.taittsuu-support-refine-searchbox .taittsuu-support-search-mode>.bold {
+.taittsuu-support-refine-searchbox .taittsuu-support-search-mode > .bold {
   text-decoration: none;
   font-size: large;
 }
 
-.taittsuu-support-refine-searchbox .taittsuu-support-search-mode>.bold:before {
+.taittsuu-support-refine-searchbox .taittsuu-support-search-mode > .bold:before {
   content: "\f002";
   font-family: "Font Awesome 5 Free";
   -webkit-font-smoothing: antialiased;
@@ -97,4 +58,3 @@
   line-height: 1;
   margin-right: 4px;
 }
-

@@ -1,7 +1,7 @@
 {
   "name": "taittsuu-support",
   "private": true,
-  "version": "1.8.2",
+  "version": "1.8.3",
   "scripts": {
     "dev": "rm -rf dist && vite",
     "build": "tsc && rm -rf dist && NODE_ENV=production vite build && cd dist && zip ../taittsuu-support.zip -r *",

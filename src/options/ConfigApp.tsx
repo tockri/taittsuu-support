@@ -61,12 +61,6 @@ export const ConfigApp: React.FC = () => {
             onChange={(loadTimelineAutomatically) => setValues({ loadTimelineAutomatically })}
           />
           <ConfigCheckView
-            label="タイーツの画像を画面内ビューアで開く"
-            value={values.lightboxOnImage}
-            tooltip="タイーツに添付されている画像を別タブではなく画面内ですばやく開きます。"
-            onChange={(lightboxOnImage) => setValues({ lightboxOnImage })}
-          />
-          <ConfigCheckView
             label="文字をマウスでなぞって選択できるようにする"
             value={values.disablePostLink}
             tooltip="タイッツーのポスト全体がリンクになっていてテキストを選択できない問題を解消します。ポスト日時の部分は変わらずリンクになっています。"
