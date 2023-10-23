@@ -81,4 +81,20 @@
   display: none;
 }
 
+.taittsuu-support-refine-searchbox .taittsuu-support-search-mode>.bold {
+  text-decoration: none;
+  font-size: large;
+}
+
+.taittsuu-support-refine-searchbox .taittsuu-support-search-mode>.bold:before {
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  margin-right: 4px;
+}
 

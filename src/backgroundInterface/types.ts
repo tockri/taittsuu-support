@@ -44,6 +44,7 @@ export type ConfigValues = {
   hideFavRet?: boolean
   focusOnTaiitsuInput?: boolean
   submitByKeyboard?: boolean
+  refineSearchBox?: boolean
 }
 
 type SetConfig = {

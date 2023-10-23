@@ -11,6 +11,7 @@ import { DisablePostLink } from "./taittsuu/DisablePostLink"
 import { HideFavRet } from "./taittsuu/HideFavRet"
 import { FocusOnTaiitsuInput } from "./taittsuu/FocusOnTaiitsuInput"
 import { SubmitByKeyboard } from "./taittsuu/SubmitByKeyboard"
+import { RefineSearchbox } from "./taittsuu/RefineSearchbox"
 
 const showTaiitsuInput = (content: PostContent) => {
   const btn = document.querySelector(".container-right .btn-primary:has(i.fa-pen)") as HTMLButtonElement
@@ -86,6 +87,11 @@ const initialize = async () => {
       SubmitByKeyboard.set()
     } else {
       SubmitByKeyboard.unset()
+    }
+    if (config.refineSearchBox) {
+      RefineSearchbox.set()
+    } else {
+      RefineSearchbox.unset()
     }
   })
   const content = await BackgroundClient.getPostContent()
