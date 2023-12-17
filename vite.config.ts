@@ -1,11 +1,11 @@
 import { crx, defineManifest } from "@crxjs/vite-plugin"
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react-swc"
+import react from "@vitejs/plugin-react"
 
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.8.3",
+  version: "1.8.4",
   description:
     "任意のウェブサイトから簡単にタイーツでき、タイッツーのUIのかゆいところに手が届くカスタマイズを加えます。",
   background: {
@@ -24,7 +24,7 @@ const manifest = defineManifest({
       run_at: "document_end"
     },
     {
-      matches: ["https://twitter.com/intent/tweet?*"],
+      matches: ["https://twitter.com/intent/tweet?*", "https://x.com/intent/tweet?*"],
       js: ["src/content/twitter-intent.ts"],
       run_at: "document_start"
     }

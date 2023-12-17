@@ -1,42 +1,43 @@
 {
   "name": "taittsuu-support",
   "private": true,
-  "version": "1.8.3",
+  "version": "1.8.4",
+  "type": "module",
   "scripts": {
     "dev": "rm -rf dist && vite",
-    "build": "tsc && rm -rf dist && NODE_ENV=production vite build && cd dist && zip ../taittsuu-support.zip -r *",
+    "build": "tsc && NODE_ENV=production vite build && cd dist && zip ../taittsuu-support.zip -r *",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.10",
-    "jotai": "^2.4.2",
+    "@mui/material": "^5.15.0",
+    "jotai": "^2.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-tooltip": "^5.21.4"
+    "react-tooltip": "^5.25.0"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "^1.0.14",
-    "@types/chrome": "^0.0.246",
-    "@types/prettier": "^3",
-    "@types/react": "^18.2.22",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
+    "@crxjs/vite-plugin": "^2.0.0-beta.21",
+    "@types/chrome": "^0.0.254",
+    "@types/prettier": "^3.0.0",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "jsdom": "^22.1.0",
-    "npm-check-updates": "^16.14.4",
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^3.2.3",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9",
-    "vitest": "^0.34.5"
+    "jsdom": "^23.0.1",
+    "npm-check-updates": "^16.14.12",
+    "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.0.4"
   },
   "prettier": {
     "semi": false,
@@ -72,6 +73,6 @@
     }
   },
   "volta": {
-    "node": "18.18.0"
+    "node": "20.10.0"
   }
 }

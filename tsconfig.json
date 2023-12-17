@@ -1,21 +1,19 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals", "chrome"]
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types"],
+    "noEmit": true,
+    "types": ["node", "chrome"],
+    "outDir": "dist",
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.ts"]
 }
