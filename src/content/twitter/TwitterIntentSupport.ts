@@ -6,6 +6,7 @@ const createPostContent = (searchString: string): PostContent | undefined => {
   const body = search.get("text") || ""
   const url = search.get("url") || ""
   const piped = FpUtil.pipe(splitBody, modifyHatenaText)
+  console.log('createPostContent', { body, url })
   if (body) {
     return piped({ body, url })
   } else if (url) {
