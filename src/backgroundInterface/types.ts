@@ -40,7 +40,6 @@ export type ConfigValues = {
   inputPagePath?: "home" | "publictimeline"
   modifyHeader?: boolean
   disablePostLink?: boolean
-  hideFavRet?: boolean
   focusOnTaiitsuInput?: boolean
   submitByKeyboard?: boolean
   refineSearchBox?: boolean

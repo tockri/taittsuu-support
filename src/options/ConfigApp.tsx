@@ -66,13 +66,6 @@ export const ConfigApp: React.FC = () => {
             tooltip="タイッツーのポスト全体がリンクになっていてテキストを選択できない問題を解消します。ポスト日時の部分は変わらずリンクになっています。"
             onChange={(disablePostLink) => setValues({ disablePostLink })}
           />
-          <ConfigCheckView
-            label="いいね、RTを非表示にする"
-            value={values.hideFavRet}
-            tooltip="数字に一喜一憂しないタイッツーライフを送ります。"
-            onChange={(hideFavRet) => setValues({ hideFavRet })}
-          />
-
           <h2>通知画面</h2>
           <ConfigCheckView
             label="通知画面でアカウント名をリンクにする"

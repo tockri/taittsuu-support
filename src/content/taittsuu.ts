@@ -7,7 +7,6 @@ import { AutomaticTimelineLoader } from "./taittsuu/AutomaticTimelineLoader"
 import { LinkOnNoticeUser } from "./taittsuu/LinkOnNoticeUser"
 import { HeaderModifier } from "./taittsuu/HeaderModifier"
 import { DisablePostLink } from "./taittsuu/DisablePostLink"
-import { HideFavRet } from "./taittsuu/HideFavRet"
 import { FocusOnTaiitsuInput } from "./taittsuu/FocusOnTaiitsuInput"
 import { SubmitByKeyboard } from "./taittsuu/SubmitByKeyboard"
 import { RefineSearchbox } from "./taittsuu/RefineSearchbox"
@@ -66,11 +65,6 @@ const initialize = async () => {
       DisablePostLink.set()
     } else {
       DisablePostLink.unset()
-    }
-    if (config.hideFavRet) {
-      HideFavRet.set()
-    } else {
-      HideFavRet.unset()
     }
     if (config.focusOnTaiitsuInput) {
       FocusOnTaiitsuInput.set()
