@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react"
 const manifest = defineManifest({
   manifest_version: 3,
   name: "どこでもタイーツ",
-  version: "1.8.6",
+  version: "1.8.7",
   description:
     "任意のウェブサイトから簡単にタイーツでき、タイッツーのUIのかゆいところに手が届くカスタマイズを加えます。",
   background: {
